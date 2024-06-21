@@ -1,14 +1,13 @@
-import Header from './components/Header';
+import React from 'react'
+import LoginHeader from './(components)/LoginHeader'
 
-export default function Home() {
+const LandingPage = () => {
   return (
-    <>
-      <div className='overflow-hidden'>
-        <Header/>
-        <main className="flex flex-col items-center justify-between w-full">
-          <h1>TODO: Landing Page</h1>
-        </main>
-      </div>
-    </>
-  );
+    <div>
+      <LoginHeader/>
+      <h1>LandingPage</h1>
+    </div>
+  )
 }
+
+export default LandingPage
