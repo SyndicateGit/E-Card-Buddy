@@ -9,8 +9,7 @@ const LoginHeader = () => {
           <Link href={"/"} className="text-xl mx-4 cursor-pointer">E-Card Buddy</Link>
         </div>
         <div className="flex">
-          <Link href={"/login"} className="btn btn-ghost">Login</Link>
-          <Link href={"/signup"} className="btn btn-ghost">Signup</Link>
+          <Link href={"/login"} className="btn btn-ghost">Signin</Link>
         </div>
       </nav>
     </header>

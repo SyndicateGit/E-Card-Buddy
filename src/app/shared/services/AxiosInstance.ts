@@ -10,3 +10,5 @@ const axiosInstance = (contentType = 'application/json') => {
     }
   })
 };
+
+export default axiosInstance;
