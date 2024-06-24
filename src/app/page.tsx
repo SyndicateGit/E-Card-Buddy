@@ -3,10 +3,12 @@ import LoginHeader from './(components)/LoginHeader'
 
 const LandingPage = () => {
   return (
-    <div>
+    <>
       <LoginHeader/>
-      <h1>LandingPage</h1>
-    </div>
+      <main>
+        <h1>LandingPage</h1>
+      </main>
+    </>
   )
 }
 

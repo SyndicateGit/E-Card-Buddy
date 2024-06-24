@@ -1,4 +1,4 @@
-import React from 'react'
+import Link from 'next/link'
 
 //TODO: Revamp when landing page is done
 const LoginHeader = () => {
@@ -6,11 +6,11 @@ const LoginHeader = () => {
     <header>
       <nav className='navbar bg-base-100'>
         <div className="flex-1">
-          <a className="text-xl mx-4 cursor-default">E-Card Buddy</a>
+          <Link href={"/"} className="text-xl mx-4 cursor-pointer">E-Card Buddy</Link>
         </div>
         <div className="flex">
-          <button className="btn btn-ghost">Login</button>
-          <button className="btn btn-ghost">Signup</button>
+          <Link href={"/login"} className="btn btn-ghost">Login</Link>
+          <Link href={"/signup"} className="btn btn-ghost">Signup</Link>
         </div>
       </nav>
     </header>
