@@ -2,6 +2,8 @@
 import LoginHeader from '@/app/(components)/LoginHeader';
 import React, {useState, FormEvent, useRef} from 'react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 import axiosInstance from '@/app/shared/services/AxiosInstance';
 
@@ -9,6 +11,13 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
+
+  const generateError = (error: string) => {
+    toast.error(error, {
+      position: "top-center",
+      autoClose: 3000,
+    })
+  }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -27,11 +36,16 @@ const Signup = () => {
       setIsLoading(true);
       const response = await axiosInstance().post("/auth/register", data);
       console.log(response);
+      localStorage.setItem("ECardBuddy jwt", response.data.accessToken);
       setIsLoading(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error:any) {
+      setIsLoading(false);
+      if(error.response.data.error.includes("E11000")){
+        generateError("Email already exists");
+      }
     }
   }
+  
   return (
     <>
       <LoginHeader/>
@@ -116,4 +130,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Signup;
