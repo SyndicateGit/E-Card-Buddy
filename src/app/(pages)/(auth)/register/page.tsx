@@ -1,16 +1,16 @@
 'use client'
 import LoginHeader from '@/app/(components)/LoginHeader';
-import React, {useState, FormEvent, useRef} from 'react';
+import React, {useState, FormEvent, useRef,} from 'react';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import axiosInstance from '@/app/shared/services/AxiosInstance';
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const generateError = (error: string) => {
     toast.error(error, {
@@ -19,7 +19,7 @@ const Signup = () => {
     })
   }
 
-  async function onSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if(!formRef.current) return;
@@ -35,14 +35,16 @@ const Signup = () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance().post("/auth/register", data);
-      console.log(response);
-      localStorage.setItem("ECardBuddy jwt", response.data.accessToken);
+      localStorage.setItem("ECardBuddy jwt", response.data.data.accessToken);
       setIsLoading(false);
+      router.push("/login");
     } catch (error:any) {
       setIsLoading(false);
-      if(error.response.data.error.includes("E11000")){
+      if(error.response && error.response.data.error.includes("E11000")){
         generateError("Email already exists");
+        return;
       }
+      generateError("An error occurred. Please try again later.");
     }
   }
   
@@ -58,7 +60,7 @@ const Signup = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST" ref={formRef} onSubmit={onSubmit}>
+          <form className="space-y-6" action="#" method="POST" ref={formRef} onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
                 Name
