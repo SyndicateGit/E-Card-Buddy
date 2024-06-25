@@ -39,7 +39,11 @@ const Signup = () => {
       router.push("/dashboard");
     } catch (error:any) {
       setIsLoading(false);
-      console.log(error);
+      console.log(error.response.data.error);
+      if(error.response && error.response.data && error.response.data.error) {
+        generateError(error.response.data.error);
+        return;
+      }
       generateError("An error occurred. Please try again later.");
     }
   }
