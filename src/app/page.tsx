@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
-import LoginHeader from './(components)/LoginHeader';
+import LoginHeader from './components/LoginHeader';
 import axiosInstance from '@/app/shared/services/AxiosInstance';
 
 const LandingPage = () => {
