@@ -1,28 +1,19 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import LoginHeader from './components/LoginHeader';
-import axiosInstance from '@/app/shared/services/AxiosInstance';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/lib/store';
+import { increment } from '@/lib/features/auth/counterSlice';
 
 const LandingPage = () => {
-  useEffect(() => {
-    const token = localStorage.getItem('ECardBuddy jwt');
-    console.log(token);
-    if(token) {
-      axiosInstance().get('/auth/verifyToken', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then((response) => {
-        console.log(response.data);
-      }).catch((error) => {
-        console.log(error);
-      });
-    }
-  }, []);
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch = useDispatch();
   return (
     <>
       <LoginHeader/>
       <main>
+        <span>{count}</span>
+        <button onClick={() => dispatch(increment())}>Increment</button>
         <h1>LandingPage</h1>
       </main>
     </>

@@ -1,7 +1,7 @@
 
 # 📅E-Card Buddy💌
 
-Welcome to E-Card Buddy! This project is created to help me and other people remember birthdays, holidays, and special events with th eoption to send people we care about special occasion cards over the internet! 
+Welcome to E-Card Buddy! This project is created to help me and other people remember birthdays, holidays, and special events with the option to send people we care about special occasion cards over the internet! 
 
 Link: [Yet to be hosted]
 
@@ -19,7 +19,7 @@ Link: [Yet to be hosted]
 -Custom Card shared page contains your card, custom message inside the card, hover animation where the card opens to show the inside message, and chosen celebration animation when first opened. 
 
 ## Technologies Used
--Front-End: Next, TypeScript, Tailwind CSS, DaisyUI, Redux, NextAuth.js
+-Front-End: Next, TypeScript, Tailwind CSS, DaisyUI, Redux, JWT
 -Other libraries: Helmet, Axios
 
 -Backed: Node/Express, MongoDB Atlas, Node-crom, Nodemailer
