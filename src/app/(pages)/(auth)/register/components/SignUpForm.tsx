@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import React, {useState, FormEvent, useRef,} from 'react';
 
-import axiosInstance from '@/app/shared/services/AxiosInstance';
+import { register } from '@/app/shared/services/AuthServices';
 const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -32,8 +32,15 @@ const SignUpForm = () => {
 
     try {
       setIsLoading(true);
-      const response = await axiosInstance().post("/auth/register", data);
-      localStorage.setItem("ECardBuddy jwt", response.data.data.accessToken);
+      
+      if(!data.email || !data.password || !data.name) {
+        generateError("Please fill in all fields.");
+        setIsLoading(false);
+        return;
+      } else{
+        register(data);
+      }
+
       setIsLoading(false);
       router.push("/login");
     } catch (error:any) {

@@ -2,10 +2,11 @@
 import { useEffect } from 'react'
 import LoginHeader from '@/app/components/LoginHeader'
 import LoginForm from './components/LoginForm'
-import axiosInstance from '@/app/shared/services/AxiosInstance';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
 import { useRouter } from 'next/navigation'
+import { verifyToken } from '@/app/shared/services/AuthServices';
+import { setUserId } from '@/lib/features/auth/userSlice';
 
 const Signup = () => {
   const user = useSelector((state: RootState) => state.user.user);
@@ -14,19 +15,15 @@ const Signup = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('ECardBuddy jwt');
-    console.log(token);
     if(token) {
-      axiosInstance().get('/auth/verifyToken', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then((response) => {
-        const user = response.data.data.user;
-        dispatch({ type: 'user/setUser', payload: {...user, id: user._id} });
+      try{
+        const userId = verifyToken(token);
+        dispatch(setUserId(userId));
         router.push('/dashboard');
-      }).catch((error) => {
+      } catch (error) {
         console.log(error);
-      });
+        localStorage.removeItem('ECardBuddy jwt');
+      }
     }
   }, []);
 
