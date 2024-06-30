@@ -33,7 +33,6 @@ const LoginForm = () => {
       setIsLoading(true);
       const response = await axiosInstance().post("/auth/login", data);
       localStorage.setItem("ECardBuddy jwt", response.data.data.accessToken);
-      console.log(response.data.data.accessToken);
       setIsLoading(false);
       router.push("/dashboard");
     } catch (error:any) {
