@@ -1,9 +1,9 @@
 'use client'
-import React, {FormEvent, useRef, useState} from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { toast } from 'react-toastify'
-import axiosInstance from '@/app/shared/services/AxiosInstance'
+import React, {FormEvent, useRef, useState} from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import { login} from '@/app/shared/services/AuthServices';
 
 const LoginForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -28,16 +28,20 @@ const LoginForm = () => {
       email: form.get("email"),
       password: form.get("password"),
     }
-
+    
     try {
       setIsLoading(true);
-      const response = await axiosInstance().post("/auth/login", data);
-      localStorage.setItem("ECardBuddy jwt", response.data.data.accessToken);
+      if(!data.email || !data.password) {
+        generateError("Please fill in all fields.");
+        setIsLoading(false);
+        return;
+      } else{
+        login(data);
+      }
       setIsLoading(false);
       router.push("/dashboard");
     } catch (error:any) {
       setIsLoading(false);
-      console.log(error.response.data.error);
       if(error.response && error.response.data && error.response.data.error) {
         generateError(error.response.data.error);
         return;
@@ -57,7 +61,7 @@ const LoginForm = () => {
         <form className="space-y-6" action="#" method="POST" ref={formRef} onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-              Email address
+              Email address *
             </label>
             <div className="mt-2">
               <input
@@ -74,7 +78,7 @@ const LoginForm = () => {
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                Password
+                Password *
               </label>
               <div className="text-sm">
                 <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
