@@ -36,4 +36,14 @@ Type in terminal the following:
 -npm run dev
 
 ## What I've learned through this project
--
+Frontend:
+-Axios Instances
+-Next router
+-JWT authentication
+-Better folder structure and code abstraction
+-Tailwind CSS
+-Redux and redux-persist
+-React Query (tanstack)
+-Daisy UI
+Backend:
+-Encrypting passwords using bcrypt
