@@ -9,7 +9,7 @@ export const userSlice = createSlice({
       email: '',
       password: '',
       role: '',
-      id: '',
+      _id: '',
     }
   },
   reducers: {
@@ -22,11 +22,11 @@ export const userSlice = createSlice({
         email: '',
         password: '',
         role: '',
-        id: '',
+        _id: '',
       }
     },
     setUserId: (state, action) => {
-      state.user.id = action.payload
+      state.user._id = action.payload
     }
   }
 })
