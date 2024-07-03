@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/lib/features/auth/userSlice';
 import Navbar from './components/Navbar';
-
 import SideBar from './components/SideBar/SideBar';
+
+import Grid from '@mui/material/Grid';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -31,19 +32,22 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className={'flex flex-col h-screen w-screen'}>
-        <div className={'flex w-full'}>
+    <Grid container spacing={2}>
+      <Grid item xs={2}>
           <div>Toggle SideBar Collapse</div>
-          <Navbar />
-        </div>
-        <div className={'flex'}>
-          <SideBar subpage={subpage} />
-          <main className="flex flex-col items-center justify-between p-24">
-            <h1>Dashboard</h1>
-          </main>
-        </div>
-        
-    </div>
+      </Grid>
+      <Grid item xs={10}>
+        <Navbar />
+      </Grid>
+      <Grid item xs={2}>
+        <SideBar subpage={subpage} />
+      </Grid>
+      <Grid item xs={10}>
+        <main className="flex flex-col items-center justify-between p-24">
+          <h1>Dashboard</h1>
+        </main>
+      </Grid>
+    </Grid>
     </>
   );
 };
