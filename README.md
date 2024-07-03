@@ -35,15 +35,17 @@ Type in terminal the following:
 -create .env
 -npm run dev
 
-## What I've learned through this project
+## What technologies/concepts I've used and is currently learning from this project:
 Frontend:
 -Axios Instances
 -Next router
 -JWT authentication
--Better folder structure and code abstraction
+-Better folder structure and code abstraction (learning)
 -Tailwind CSS
--Redux and redux-persist
--React Query (tanstack)
--Daisy UI
+-Redux and redux-persist (learning)
+-React Query (tanstack) (learning)
+-Daisy UI (learning)
+-MUI (learning)
+
 Backend:
 -Encrypting passwords using bcrypt
