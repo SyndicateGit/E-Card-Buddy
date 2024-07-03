@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import userReducer from './features/auth/userSlice';
-import counterReducer from './features/auth/counterSlice';
+import uiSettingsReducer from './features/auth/uiSettingsSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 const authPersistConfig = {
@@ -14,7 +14,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   user: persistReducer(authPersistConfig, userReducer),
-  counterReducer,
+  uiSettings: persistReducer(authPersistConfig, uiSettingsReducer),
 });
 
 export const store = configureStore({
