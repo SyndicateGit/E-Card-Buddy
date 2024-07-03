@@ -1,5 +1,13 @@
+const tokenKey = 'ECarddBuddy jwt';
+
 export function getToken() {
-  const token = localStorage.getItem('ECardBuddy jwt');
-  if(!token) throw new Error('No token found');
+  const token = localStorage.getItem(tokenKey);
+  if(!token){
+    return null;
+  }
   return token;
+}
+
+export function removeToken() {
+  localStorage.removeItem(tokenKey);
 }

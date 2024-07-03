@@ -7,24 +7,28 @@ import { useRouter } from 'next/navigation'
 
 import { setUser } from '@/lib/features/auth/userSlice';
 import { getCurrentUser } from '@/app/shared/services/UserServices';
+import { getToken, removeToken } from '@/app/shared/utils/TokenUtils';
+import { verifyToken } from '@/app/shared/services/AuthServices';
 
-const Signup = () => {
-  const dispatch = useDispatch();
+const SignIn = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const storeUser = async() => {
-      dispatch(setUser(await getCurrentUser()));
+    const token = getToken();
+
+    if(!token) {
+      return;
     }
-    
+
     try{
-      storeUser();
-      router.push('/dashboard');
+      verifyToken(token).then(()=> {
+        router.push('/dashboard');
+      });
     } catch (error) {
       console.log(error);
-      localStorage.removeItem('ECardBuddy jwt');
+      removeToken();
     }
-  }, []);
+  }, [router]);
 
   return (
     <>
@@ -36,4 +40,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default SignIn

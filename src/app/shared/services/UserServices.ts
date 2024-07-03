@@ -4,6 +4,9 @@ import axiosInstance from "./AxiosInstance";
 export async function getCurrentUser(): Promise<any> {
   try {
     const token = getToken();
+    if(!token){
+      return null;
+    }
     const response = await axiosInstance().get('/user/getCurrentUser', {
       headers: {
         Authorization: `Bearer ${token}`

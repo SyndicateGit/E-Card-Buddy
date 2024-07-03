@@ -1,6 +1,5 @@
 import { getToken } from "../utils/TokenUtils";
 import axiosInstance from "./AxiosInstance";
-
 export async function login(credentials: any): Promise<any> {
   try {
       const response = await axiosInstance().post("/auth/login", credentials);
@@ -11,9 +10,12 @@ export async function login(credentials: any): Promise<any> {
   }
 }
 
-export async function verifyToken(): Promise<any> {
+export function logout(): void {
+  localStorage.removeItem("ECardBuddy jwt");
+}
+
+export async function verifyToken(token: string): Promise<any> {
   try {
-    const token = getToken();
     const response = await axiosInstance().get('/auth/verifyToken', {
       headers: {
         Authorization: `Bearer ${token}`
