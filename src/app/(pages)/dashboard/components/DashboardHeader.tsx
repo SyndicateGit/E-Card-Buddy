@@ -12,7 +12,7 @@ const DashboardHeader = () => {
     <header>
       <nav className='navbar bg-base-100'>
         <div className="flex-1">
-          <Link href={"/"} className="text-xl mx-4 cursor-pointer">E-Card Buddy</Link>
+          <Link href={"/dashboard"} className="text-xl mx-4 cursor-pointer">E-Card Buddy</Link>
         </div>
         <div className="flex">
           <button className={`btn btn-ghost`} onClick={handleLogout}>Sign Out</button>
