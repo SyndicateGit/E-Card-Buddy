@@ -16,11 +16,16 @@ const SideBarToggle = ({isCollapsed}: SideBarToggleProps) => {
   }
   return (
     <>
-      {isCollapsed ? (
-        <MenuIcon onClick={handleSideBarToggle}/>
-      ) : (
-        <ChevronLeftIcon onClick={handleSideBarToggle}/>
-      )}
+      
+        {isCollapsed ? (
+          <div className='flex justify-center items-center h-full'>
+            <MenuIcon onClick={handleSideBarToggle}/>
+          </div>
+        ) : (
+          <div className='flex justify-end items-center h-full pr-2'>
+            <ChevronLeftIcon onClick={handleSideBarToggle}/>
+          </div>
+        )}
     </>
 )}
 
