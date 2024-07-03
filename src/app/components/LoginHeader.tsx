@@ -1,20 +1,23 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 //TODO: Revamp when landing page is done
 const LoginHeader = () => {
   return (
     <header>
-      <nav className='navbar bg-base-100'>
+      <nav className="navbar bg-base-100">
         <div className="flex-1">
-          <Link href={"/"} className="text-xl mx-4 cursor-pointer">E-Card Buddy</Link>
+          <Link href={'/'} className="text-xl mx-4 cursor-pointer">
+            E-Card Buddy
+          </Link>
         </div>
         <div className="flex">
-          <Link href={"/login"} className="btn btn-ghost">Sign In</Link>
+          <Link href={'/login'} className="btn btn-ghost">
+            Sign In
+          </Link>
         </div>
       </nav>
     </header>
-    
-  )
-}
+  );
+};
 
-export default LoginHeader
+export default LoginHeader;

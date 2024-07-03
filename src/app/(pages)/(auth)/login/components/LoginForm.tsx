@@ -1,9 +1,9 @@
-'use client'
-import React, {FormEvent, useRef, useState} from 'react';
+'use client';
+import React, { FormEvent, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { login} from '@/app/shared/services/AuthServices';
+import { login } from '@/app/shared/services/AuthServices';
 
 const LoginForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -12,41 +12,41 @@ const LoginForm = () => {
 
   const generateError = (error: string) => {
     toast.error(error, {
-      position: "top-center",
+      position: 'top-center',
       autoClose: 3000,
-    })
-  }
+    });
+  };
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if(!formRef.current) return;
+    if (!formRef.current) return;
 
     const form = new FormData(formRef.current);
-    
+
     const data = {
-      email: form.get("email"),
-      password: form.get("password"),
-    }
-    
+      email: form.get('email'),
+      password: form.get('password'),
+    };
+
     try {
       setIsLoading(true);
-      if(!data.email || !data.password) {
-        generateError("Please fill in all fields.");
+      if (!data.email || !data.password) {
+        generateError('Please fill in all fields.');
         setIsLoading(false);
         return;
-      } else{
+      } else {
         login(data);
       }
       setIsLoading(false);
-      router.push("/dashboard");
-    } catch (error:any) {
+      router.push('/dashboard');
+    } catch (error: any) {
       setIsLoading(false);
-      if(error.response && error.response.data && error.response.data.error) {
+      if (error.response && error.response.data && error.response.data.error) {
         generateError(error.response.data.error);
         return;
       }
-      generateError("An error occurred. Please try again later.");
+      generateError('An error occurred. Please try again later.');
     }
   }
   return (
@@ -104,7 +104,7 @@ const LoginForm = () => {
               disabled={isLoading}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {isLoading ? "Signing In..." : "Sign In"}
+              {isLoading ? 'Signing In...' : 'Sign In'}
             </button>
           </div>
         </form>
@@ -117,7 +117,7 @@ const LoginForm = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

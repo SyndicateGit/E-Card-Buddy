@@ -6,4 +6,4 @@ export type UserModel = {
   role: string;
   createdAt: string;
   updatedAt: string;
-}
+};

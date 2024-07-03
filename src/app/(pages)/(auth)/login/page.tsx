@@ -1,9 +1,9 @@
-'use client'
-import { useEffect } from 'react'
-import LoginHeader from '@/app/components/LoginHeader'
-import LoginForm from './components/LoginForm'
+'use client';
+import { useEffect } from 'react';
+import LoginHeader from '@/app/components/LoginHeader';
+import LoginForm from './components/LoginForm';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 import { setUser } from '@/lib/features/auth/userSlice';
 import { getCurrentUser } from '@/app/shared/services/UserServices';
@@ -16,12 +16,12 @@ const SignIn = () => {
   useEffect(() => {
     const token = getToken();
 
-    if(!token) {
+    if (!token) {
       return;
     }
 
-    try{
-      verifyToken(token).then(()=> {
+    try {
+      verifyToken(token).then(() => {
         router.push('/dashboard');
       });
     } catch (error) {
@@ -32,12 +32,12 @@ const SignIn = () => {
 
   return (
     <>
-      <LoginHeader/>
+      <LoginHeader />
       <main>
-        <LoginForm/>
+        <LoginForm />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

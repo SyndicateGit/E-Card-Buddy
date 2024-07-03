@@ -4,12 +4,12 @@ import SignUpForm from './components/SignUpForm';
 const Signup = () => {
   return (
     <>
-      <LoginHeader/>
+      <LoginHeader />
       <main>
-        <SignUpForm/>
+        <SignUpForm />
       </main>
     </>
-  )
-}
+  );
+};
 
 export default Signup;

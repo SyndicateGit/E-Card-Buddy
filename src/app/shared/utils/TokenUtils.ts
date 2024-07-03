@@ -2,7 +2,7 @@ const tokenKey = 'ECardBuddy jwt';
 
 export function getToken() {
   const token = localStorage.getItem(tokenKey);
-  if(!token){
+  if (!token) {
     return null;
   }
   return token;
