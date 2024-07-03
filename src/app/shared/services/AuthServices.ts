@@ -1,4 +1,4 @@
-import { getToken } from "../utils/TokenUtils";
+import { getToken, removeToken } from "../utils/TokenUtils";
 import axiosInstance from "./AxiosInstance";
 export async function login(credentials: any): Promise<any> {
   try {
@@ -11,7 +11,7 @@ export async function login(credentials: any): Promise<any> {
 }
 
 export function logout(): void {
-  localStorage.removeItem("ECardBuddy jwt");
+  removeToken();
 }
 
 export async function verifyToken(token: string): Promise<any> {

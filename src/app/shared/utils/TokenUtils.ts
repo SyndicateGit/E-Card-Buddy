@@ -1,4 +1,4 @@
-const tokenKey = 'ECarddBuddy jwt';
+const tokenKey = 'ECardBuddy jwt';
 
 export function getToken() {
   const token = localStorage.getItem(tokenKey);
