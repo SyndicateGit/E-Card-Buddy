@@ -3,13 +3,12 @@ import { useRouter } from 'next/navigation';
 type MenuCardProps = {
   title: string;
   icon: React.ReactNode;
-  link: string;
   selected: string;
   isCollapsed: boolean;
   setSubpage: (selected: string) => void;
 }
 
-const MenuCard = ({title, icon, link, selected, isCollapsed, setSubpage}: MenuCardProps)=> {
+const MenuCard = ({title, icon, selected, isCollapsed, setSubpage}: MenuCardProps)=> {
   const router = useRouter();
   const handleMenuItemClick = () => {
     setSubpage(title);
@@ -17,12 +16,12 @@ const MenuCard = ({title, icon, link, selected, isCollapsed, setSubpage}: MenuCa
   return (
     <>
       <MenuItem className='flex flex-1' selected={selected === title} onClick={handleMenuItemClick}>
-        <div>
+        <div className={`flex flex-1 ${isCollapsed? 'justify-center' : 'justify-start' }`}>
           {icon}
+          <p className={`${isCollapsed ? 'hidden': 'block'} ml-2 self-end`}>
+            {title}
+          </p>
         </div>
-        <p className={`${isCollapsed ? 'hidden': 'block'} ml-2`}>
-          {title}
-        </p>
       </MenuItem>
     </>
   )

@@ -41,7 +41,7 @@ const Dashboard = () => {
         <Navbar />
       </Grid>
       <Grid item xs={sideBarWidth}>
-        <SideBar subpage={subpage} setSubpage={setSubpage} isCollapsed={uiSettings.isSideBarCollapsed}/>
+        <SideBar subpage={subpage} setSubpage={setSubpage} isSideBarCollapsed={uiSettings.isSideBarCollapsed}/>
       </Grid>
       <Grid item xs={12 - sideBarWidth}>
         <main className="flex flex-col items-center justify-between p-24">

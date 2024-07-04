@@ -5,36 +5,57 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuCard from './MenuCard';
+import MenuItem from './MenuItem';
+import List from '@mui/material/List';
+import Collapse from '@mui/material/Collapse';
 
 type SideBarProps = {
   subpage: string;
   setSubpage: (subpage: string) => void;
-  isCollapsed: boolean;
+  isSideBarCollapsed: boolean;
 }
 
 
 
-const SideBar = ({subpage, isCollapsed, setSubpage}: SideBarProps) => {
+const SideBar = ({subpage, isSideBarCollapsed, setSubpage}: SideBarProps) => {
 
   return (
     <>
-      <div className={`flex flex-col ${isCollapsed? 'justify-center': 'justify-start'}`}>
-        <MenuCard 
-          selected={subpage} 
+      <div className={`flex flex-col ${isSideBarCollapsed? 'justify-center': 'justify-start'}`}>
+        <MenuItem 
           title={'Home'} 
           icon={<HomeIcon/>} 
-          link={'/dashboard/home'} 
-          isCollapsed={isCollapsed}
-          setSubpage={setSubpage}
-        />
-        <MenuCard 
+          isSideBarCollapsed= {isSideBarCollapsed} 
           selected={subpage} 
-          title={'Reminder'} 
+          setSubpage={setSubpage}/>
+        <MenuItem 
+          selected={subpage} 
+          title={'Cards'} 
           icon={<HomeIcon/>} 
-          link={'/dashboard/reminder'} 
-          isCollapsed={isCollapsed}
+          isSideBarCollapsed={isSideBarCollapsed}
           setSubpage={setSubpage}
+          isNestedMenu={true}
+          open={subpage === 'Cards'}
         />
+        <Collapse in={subpage === 'Cards'} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <MenuItem  
+              selected={subpage} 
+              title={'Card Builder'} 
+              icon={<HomeIcon/>} 
+              isSideBarCollapsed={isSideBarCollapsed}
+              setSubpage={setSubpage}
+            />
+            <MenuItem  
+              selected={subpage} 
+              title={'Card Scheduler'} 
+              icon={<HomeIcon/>} 
+              isSideBarCollapsed={isSideBarCollapsed}
+              setSubpage={setSubpage}
+            />
+          </List>
+        </Collapse>
+        
       </div>
     </>
 )}
