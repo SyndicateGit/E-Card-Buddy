@@ -17,7 +17,7 @@ const Dashboard = () => {
   const uiSettings = useSelector((state: RootState) => state.uiSettings);
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
-  const [subpage, setSubpage] = useState<string>('home');
+  const [subpage, setSubpage] = useState<string>('Home');
   const sideBarWidth = uiSettings.isSideBarCollapsed ? 0.5 : 1;
   if (!user || !user._id) {
     getCurrentUser()
@@ -30,6 +30,7 @@ const Dashboard = () => {
       });
   }
 
+  //TODO: Add transitions to the sidebar collapse
   return (
     <>
     <Grid container spacing={0}>
@@ -40,11 +41,11 @@ const Dashboard = () => {
         <Navbar />
       </Grid>
       <Grid item xs={sideBarWidth}>
-        <SideBar subpage={subpage} />
+        <SideBar subpage={subpage} setSubpage={setSubpage} isCollapsed={uiSettings.isSideBarCollapsed}/>
       </Grid>
       <Grid item xs={12 - sideBarWidth}>
         <main className="flex flex-col items-center justify-between p-24">
-          <h1>Dashboard</h1>
+          <h1>{subpage}</h1>
         </main>
       </Grid>
     </Grid>
