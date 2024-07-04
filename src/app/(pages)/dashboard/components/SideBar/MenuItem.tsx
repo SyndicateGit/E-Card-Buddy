@@ -9,21 +9,23 @@ type MenuItemProps = {
   selected: string;
   isSideBarCollapsed: boolean;
   isNestedMenu?: boolean;
+  isNestedItem?: boolean;
   open?: boolean;
+  setCardsSubpageOpen?: (open: boolean) => void;
   setSubpage: (selected: string) => void;
 }
 
-const MenuItem = ({title, icon, selected, isSideBarCollapsed, isNestedMenu, open, setSubpage}: MenuItemProps)=> {
+const MenuItem = ({title, icon, selected, isSideBarCollapsed, isNestedMenu, isNestedItem, open, setCardsSubpageOpen, setSubpage}: MenuItemProps)=> {
   const handleMenuItemClick = () => {
-    if (isNestedMenu) {
-      
+    if (isNestedMenu && setCardsSubpageOpen) {
+      setCardsSubpageOpen(!open);
     }
     setSubpage(title);
   }
   return (
     <>
-      <ListItemButton alignItems={`${isSideBarCollapsed? "center": "flex-start"}`} onClick={handleMenuItemClick} selected={title === selected}>
-          <ListItemIcon>
+      <ListItemButton sx={{pl: `${isNestedItem? 1: 0}`}} onClick={handleMenuItemClick} selected={title === selected}>
+          <ListItemIcon sx={{ mr: -3 }}>
             {icon}
           </ListItemIcon>
           {isSideBarCollapsed ? null : <ListItemText primary={title} />}

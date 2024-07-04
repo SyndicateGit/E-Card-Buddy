@@ -18,6 +18,7 @@ type SideBarProps = {
 
 
 const SideBar = ({subpage, isSideBarCollapsed, setSubpage}: SideBarProps) => {
+  const [cardsSubpageOpen, setCardsSubpageOpen] = useState(false);
 
   return (
     <>
@@ -35,9 +36,10 @@ const SideBar = ({subpage, isSideBarCollapsed, setSubpage}: SideBarProps) => {
           isSideBarCollapsed={isSideBarCollapsed}
           setSubpage={setSubpage}
           isNestedMenu={true}
-          open={subpage === 'Cards'}
+          open={cardsSubpageOpen}
+          setCardsSubpageOpen={setCardsSubpageOpen}
         />
-        <Collapse in={subpage === 'Cards'} timeout="auto" unmountOnExit>
+        <Collapse in={cardsSubpageOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <MenuItem  
               selected={subpage} 
@@ -45,6 +47,7 @@ const SideBar = ({subpage, isSideBarCollapsed, setSubpage}: SideBarProps) => {
               icon={<HomeIcon/>} 
               isSideBarCollapsed={isSideBarCollapsed}
               setSubpage={setSubpage}
+              isNestedItem={true}
             />
             <MenuItem  
               selected={subpage} 
@@ -52,6 +55,7 @@ const SideBar = ({subpage, isSideBarCollapsed, setSubpage}: SideBarProps) => {
               icon={<HomeIcon/>} 
               isSideBarCollapsed={isSideBarCollapsed}
               setSubpage={setSubpage}
+              isNestedItem={true}
             />
           </List>
         </Collapse>
