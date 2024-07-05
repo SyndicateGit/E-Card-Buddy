@@ -15,6 +15,8 @@ import CardBuilder from './(subpages)/Cards/CardBuilder/CardBuilder';
 import CardLibrary from './(subpages)/Cards/CardLibrary/CardLibrary';
 import CardScheduler from './(subpages)/Cards/CardScheduler/CardScheduler';
 import Home from './(subpages)/Home/Home';
+import Reminders from './(subpages)/Reminders/Reminders';
+import Contacts from './(subpages)/Contacts/Contacts';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -60,6 +62,12 @@ const Dashboard = () => {
           )}
           {subpage === 'Card Scheduler' && (
             <CardScheduler/>
+          )}
+          {subpage === 'Reminders' && (
+            <Reminders/>
+          )}
+          {subpage === 'Contacts' && (
+            <Contacts/>
           )}
         </main>
       </Grid>

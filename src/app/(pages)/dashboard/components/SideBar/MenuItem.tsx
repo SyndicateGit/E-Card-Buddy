@@ -18,8 +18,8 @@ const MenuItem = ({title, icon, selected, isSideBarCollapsed, isNested, setSubpa
   }
   return (
     <>
-      <ListItemButton sx={{pl: `${isNested? 1: 0}`}} onClick={handleMenuItemClick} selected={title === selected}>
-          <ListItemIcon sx={{mr:-1, pl: 1 }}>
+      <ListItemButton sx={{pl: `${isNested? 1: 0}`, height: "4rem"}} onClick={handleMenuItemClick} selected={title === selected}>
+          <ListItemIcon sx={{mr:-1, pl: 1,  }}>
             {icon}
           </ListItemIcon>
           {isSideBarCollapsed ? null : <ListItemText primary={title} />}

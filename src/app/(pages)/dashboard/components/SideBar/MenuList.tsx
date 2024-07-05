@@ -17,8 +17,8 @@ const MenuList = ({title, icon, isSideBarCollapsed, open, setSubpageOpen}: MenuL
   }
   return (
     <>
-      <ListItemButton sx={{pl: 1}} onClick={handleMenuListClick}>
-          <ListItemIcon sx={{mr:-1, pl: 1 }}>
+      <ListItemButton sx={{pl: 0, height: "4rem"}} onClick={handleMenuListClick}>
+          <ListItemIcon sx={{mr:-1, pl: 1, }}>
             {icon}
           </ListItemIcon>
           {isSideBarCollapsed ? null : <ListItemText primary={title} />}
