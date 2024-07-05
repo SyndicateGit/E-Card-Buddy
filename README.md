@@ -19,7 +19,7 @@ Link: [Yet to be hosted]
 -Custom Card shared page contains your card, custom message inside the card, hover animation where the card opens to show the inside message, and chosen celebration animation when first opened. 
 
 ## Technologies Used
--Front-End: Next, TypeScript, Tailwind CSS, DaisyUI, Redux, JWT
+-Front-End: Next, TypeScript, Tailwind CSS, DaisyUI, Redux and Redux Persist, JWT, MUI
 -Other libraries: Helmet, Axios
 
 -Backed: Node/Express, MongoDB Atlas, Node-crom, Nodemailer
@@ -32,7 +32,7 @@ Link: [Yet to be hosted]
 Type in terminal the following:
 
 -npm install
--create .env
+-copy .env.example into your own .env file
 -npm run dev
 
 ## What technologies/concepts I've used and is currently learning from this project:
@@ -49,3 +49,4 @@ Frontend:
 
 Backend:
 -Encrypting passwords using bcrypt
+-Authentication using JWT (learning)
