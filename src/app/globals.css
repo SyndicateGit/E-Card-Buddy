@@ -1,35 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+  font-family: Roboto, sans-serif;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
   font-size: 1rem;
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 @media (min-width: 0px) {
   :root {
-    font-size: 0.55rem;
+
   }
 }
 
 @media (min-width: 480px) {
   :root {
-    font-size: 0.7rem;
+ 
   }
 }
 
 @media (min-width: 768px) {
   :root {
-    font-size: 1rem;
+
   }
 }
 
 @media (min-width: 1280px) {
   :root {
-    font-size: 1.2rem;
+
   }
 }
 

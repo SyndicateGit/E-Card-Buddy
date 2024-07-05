@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import storage from './storage';
 
 import userReducer from './features/auth/userSlice';
-import counterReducer from './features/auth/counterSlice';
+import uiSettingsReducer from './features/auth/uiSettingsSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 const authPersistConfig = {
@@ -12,9 +12,15 @@ const authPersistConfig = {
   whitelist: ['user'],
 };
 
+const uiSettingsPersistConfig = {
+  key: 'uiSettings',
+  storage: storage,
+  whitelist: ['isSideBarCollapsed'],
+  }
+
 const rootReducer = combineReducers({
   user: persistReducer(authPersistConfig, userReducer),
-  counterReducer,
+  uiSettings: persistReducer(uiSettingsPersistConfig, uiSettingsReducer),
 });
 
 export const store = configureStore({
