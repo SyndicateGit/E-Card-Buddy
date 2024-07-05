@@ -3,29 +3,29 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-type MenuItemProps = {
+type MenuListProps = {
   title: string;
   icon: React.ReactNode;
-  selected: string;
   isSideBarCollapsed: boolean;
-  isNested?: boolean;
-  setSubpage: (selected: string) => void;
+  open: boolean;
+  setSubpageOpen: (open: boolean) => void;
 }
 
-const MenuItem = ({title, icon, selected, isSideBarCollapsed, isNested, setSubpage}: MenuItemProps)=> {
-  const handleMenuItemClick = () => {
-    setSubpage(title);
+const MenuList = ({title, icon, isSideBarCollapsed, open, setSubpageOpen}: MenuListProps)=> {
+  const handleMenuListClick = () => {
+    setSubpageOpen(!open);
   }
   return (
     <>
-      <ListItemButton sx={{pl: `${isNested? 1: 0}`}} onClick={handleMenuItemClick} selected={title === selected}>
+      <ListItemButton sx={{pl: 1}} onClick={handleMenuListClick}>
           <ListItemIcon sx={{mr:-1, pl: 1 }}>
             {icon}
           </ListItemIcon>
           {isSideBarCollapsed ? null : <ListItemText primary={title} />}
+          {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
     </>
   )
 }
 
-export default MenuItem;
+export default MenuList;

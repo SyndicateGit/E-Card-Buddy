@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import HomeIcon from '@mui/icons-material/Home';
-import MenuCard from './MenuCard';
 import MenuItem from './MenuItem';
 import List from '@mui/material/List';
 import Collapse from '@mui/material/Collapse';
+import MenuList from './MenuList';
 
 type SideBarProps = {
   subpage: string;
@@ -29,25 +29,30 @@ const SideBar = ({subpage, isSideBarCollapsed, setSubpage}: SideBarProps) => {
           isSideBarCollapsed= {isSideBarCollapsed} 
           selected={subpage} 
           setSubpage={setSubpage}/>
-        <MenuItem 
-          selected={subpage} 
+        <MenuList 
           title={'Cards'} 
           icon={<HomeIcon/>} 
           isSideBarCollapsed={isSideBarCollapsed}
-          setSubpage={setSubpage}
-          isNestedMenu={true}
           open={cardsSubpageOpen}
-          setCardsSubpageOpen={setCardsSubpageOpen}
+          setSubpageOpen={setCardsSubpageOpen}
         />
         <Collapse in={cardsSubpageOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
+            <MenuItem  
+              selected={subpage} 
+              title={'Card Library'} 
+              icon={<HomeIcon/>} 
+              isSideBarCollapsed={isSideBarCollapsed}
+              setSubpage={setSubpage}
+              isNested={true}
+            />
             <MenuItem  
               selected={subpage} 
               title={'Card Builder'} 
               icon={<HomeIcon/>} 
               isSideBarCollapsed={isSideBarCollapsed}
               setSubpage={setSubpage}
-              isNestedItem={true}
+              isNested={true}
             />
             <MenuItem  
               selected={subpage} 
@@ -55,7 +60,7 @@ const SideBar = ({subpage, isSideBarCollapsed, setSubpage}: SideBarProps) => {
               icon={<HomeIcon/>} 
               isSideBarCollapsed={isSideBarCollapsed}
               setSubpage={setSubpage}
-              isNestedItem={true}
+              isNested={true}
             />
           </List>
         </Collapse>

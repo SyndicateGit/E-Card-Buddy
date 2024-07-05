@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { useDispatch } from 'react-redux';
 import { toggleSideBarCollapsed } from '@/lib/features/auth/uiSettingsSlice';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
 type SideBarToggleProps = {
   isCollapsed: boolean;
@@ -23,7 +24,7 @@ const SideBarToggle = ({isCollapsed}: SideBarToggleProps) => {
           </div>
         ) : (
           <div className='flex justify-end items-center h-full pr-2'>
-            <ChevronLeftIcon onClick={handleSideBarToggle}/>
+            <MenuOpenIcon onClick={handleSideBarToggle}/>
           </div>
         )}
     </>

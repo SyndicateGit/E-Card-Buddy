@@ -11,6 +11,10 @@ import SideBar from './components/SideBar/SideBar';
 
 import Grid from '@mui/material/Grid';
 import SideBarToggle from './components/SideBarToggle';
+import CardBuilder from './(subpages)/Cards/CardBuilder/CardBuilder';
+import CardLibrary from './(subpages)/Cards/CardLibrary/CardLibrary';
+import CardScheduler from './(subpages)/Cards/CardScheduler/CardScheduler';
+import Home from './(subpages)/Home/Home';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -45,7 +49,18 @@ const Dashboard = () => {
       </Grid>
       <Grid item xs={12 - sideBarWidth}>
         <main className="flex flex-col items-center justify-between p-24">
-          <h1>{subpage}</h1>
+          {subpage === 'Home' && (
+            <Home/>
+          )}
+          {subpage === 'Card Builder' && (
+            <CardBuilder/>
+          )}
+          {subpage === 'Card Library' && (
+            <CardLibrary/>
+          )}
+          {subpage === 'Card Scheduler' && (
+            <CardScheduler/>
+          )}
         </main>
       </Grid>
     </Grid>
