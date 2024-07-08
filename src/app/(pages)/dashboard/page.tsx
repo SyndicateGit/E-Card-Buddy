@@ -39,39 +39,39 @@ const Dashboard = () => {
   //TODO: Add transitions to the sidebar collapse
   return (
     <>
-    <Grid container spacing={0}>
-      <Grid item xs={sideBarWidth}>
-          <SideBarToggle isCollapsed={uiSettings.isSideBarCollapsed}/>
-      </Grid>
-      <Grid item xs={12 - sideBarWidth}>
-        <Navbar />
-      </Grid>
-      <Grid item xs={sideBarWidth}>
-        <SideBar subpage={subpage} setSubpage={setSubpage} isSideBarCollapsed={uiSettings.isSideBarCollapsed}/>
-      </Grid>
-      <Grid item xs={12 - sideBarWidth}>
-        <main className="flex flex-col items-center justify-between p-24">
-          {subpage === 'Home' && (
-            <Home/>
-          )}
-          {subpage === 'Card Builder' && (
-            <CardBuilder/>
-          )}
-          {subpage === 'Card Library' && (
-            <CardLibrary/>
-          )}
-          {subpage === 'Card Scheduler' && (
-            <CardScheduler/>
-          )}
-          {subpage === 'Reminders' && (
-            <Reminders/>
-          )}
-          {subpage === 'Contacts' && (
-            <Contacts/>
-          )}
-        </main>
-      </Grid>
-    </Grid>
+      <div className='flex flex-col h-full'>
+        <div className='flex'>
+          <div className={`flex justify-center items-center ${uiSettings.isSideBarCollapsed? 'w-[80px]' : 'w-[140px]'}`}>
+            <SideBarToggle isCollapsed={uiSettings.isSideBarCollapsed}/>
+          </div>
+          <Navbar/>
+        </div>
+        <div className='flex flex-1'>
+          <div className={`flex flex-col ${uiSettings.isSideBarCollapsed? 'w-[80px]' : 'w-[140px]'}`}>
+            <SideBar subpage={subpage} setSubpage={setSubpage} isSideBarCollapsed={uiSettings.isSideBarCollapsed}/>
+          </div>
+          <main className="flex flex-1 flex-col items-center justify-between p-24">
+            {subpage === 'Home' && (
+              <Home/>
+            )}
+            {subpage === 'Card Builder' && (
+              <CardBuilder/>
+            )}
+            {subpage === 'Card Library' && (
+              <CardLibrary/>
+            )}
+            {subpage === 'Card Scheduler' && (
+              <CardScheduler/>
+            )}
+            {subpage === 'Reminders' && (
+              <Reminders/>
+            )}
+            {subpage === 'Contacts' && (
+              <Contacts/>
+            )}
+          </main>
+        </div>
+      </div>
     </>
   );
 };
