@@ -1,7 +1,7 @@
 export type ReminderModel = {
   id?: string;
   title: string;
-  notes?: string;
+  note?: string;
   dateTime: string;
   reminder_sent: boolean;
 }
