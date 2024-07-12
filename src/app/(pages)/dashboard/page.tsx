@@ -50,7 +50,7 @@ const Dashboard = () => {
           <div className={`flex flex-col ${uiSettings.isSideBarCollapsed? 'w-[80px]' : 'w-[140px]'}`}>
             <SideBar subpage={subpage} setSubpage={setSubpage} isSideBarCollapsed={uiSettings.isSideBarCollapsed}/>
           </div>
-          <main className="flex flex-1 flex-col items-center justify-between p-24">
+          <main className="flex flex-1 flex-col items-center justify-between">
             {subpage === 'Home' && (
               <Home/>
             )}
