@@ -5,6 +5,7 @@ const axiosInstance = (contentType = 'application/json') => {
     baseURL: `${process.env.REACT_APP_API_URL || 'http://localhost:8000/api/'}`,
     headers: {
       'Content-Type': contentType,
+      Authorization: `Bearer ${localStorage.getItem('ECardBuddy jwt')}`,
     },
   });
 };

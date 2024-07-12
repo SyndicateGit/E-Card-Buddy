@@ -36,7 +36,7 @@ const LoginForm = () => {
         setIsLoading(false);
         return;
       } else {
-        login(data);
+        await login(data);
       }
       setIsLoading(false);
       router.push('/dashboard');

@@ -1,10 +1,9 @@
 'useClient';
 import React, { FormEvent } from 'react'
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useForm, SubmitHandler } from "react-hook-form"
-
+import { ReminderModel } from '@/app/shared/models/ReminderModel';
 interface FieldValues {
   title: string
   note?: string
@@ -15,7 +14,13 @@ const ReminderForm = () => {
   const { register, handleSubmit } = useForm<FieldValues>();
 
   const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
-    console.log(data);
+    const reminder: ReminderModel = {
+      title: data.title,
+      note: data.note,
+      dateTime: data.dateTime,
+      reminder_sent: false
+    }
+    console.log(reminder);
   };
   return (
     <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
