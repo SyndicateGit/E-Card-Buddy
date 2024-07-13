@@ -42,8 +42,8 @@ const LoginForm = () => {
       router.push('/dashboard');
     } catch (error: any) {
       setIsLoading(false);
-      if (error.response && error.response.data && error.response.data.error) {
-        generateError(error.response.data.error);
+      if (error.response && error.response.data && error.response.data.errors) {
+        generateError(error.response.data.errors[0].message);
         return;
       }
       generateError('An error occurred. Please try again later.');

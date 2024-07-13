@@ -17,7 +17,7 @@ const ReminderForm = () => {
     const reminder: ReminderModel = {
       title: data.title,
       note: data.note,
-      dateTime: data.dateTime,
+      date_time: data.dateTime,
       reminder_sent: false
     }
     console.log(reminder);
