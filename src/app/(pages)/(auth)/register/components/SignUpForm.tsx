@@ -30,27 +30,28 @@ const SignUpForm = () => {
       password: form.get('password'),
     };
 
-    try {
+  
       setIsLoading(true);
 
       if (!data.email || !data.password || !data.name) {
         generateError('Please fill in all fields.');
         setIsLoading(false);
         return;
-      } else {
-        register(data);
-      }
-
-      setIsLoading(false);
-      router.push('/login');
-    } catch (error: any) {
-      setIsLoading(false);
-      if (error.response && error.response.data.error.includes('E11000')) {
-        generateError('Email already exists');
-        return;
-      }
-      generateError('An error occurred. Please try again later.');
-    }
+      } 
+      
+      await register(data)
+      .then(()=> {
+        setIsLoading(false);
+        router.push('/login');
+      })
+      .catch((error: any)=>{
+        setIsLoading(false);
+        if (error.response && error.response.data.error.includes('E11000')) {
+          generateError('Email already exists');
+          return;
+        }
+        generateError('An error occurred. Please try again later.');
+    });
   }
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

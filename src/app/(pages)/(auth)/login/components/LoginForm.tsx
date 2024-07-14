@@ -29,24 +29,24 @@ const LoginForm = () => {
       password: form.get('password'),
     };
 
-    try {
-      setIsLoading(true);
-      if (!data.email || !data.password) {
-        generateError('Please fill in all fields.');
-        setIsLoading(false);
-        return;
-      } else {
-        await login(data);
-      }
+
+    setIsLoading(true);
+    if (!data.email || !data.password) {
+      generateError('Please fill in all fields.');
+      setIsLoading(false);
+      return;
+    } else { 
+      await login(data).then(()=> {
       setIsLoading(false);
       router.push('/dashboard');
-    } catch (error: any) {
-      setIsLoading(false);
-      if (error.response && error.response.data && error.response.data.errors) {
-        generateError(error.response.data.errors[0].message);
-        return;
-      }
-      generateError('An error occurred. Please try again later.');
+      }).catch((error: any)=>{
+        setIsLoading(false);
+        if (error.response && error.response.data && error.response.data.errors) {
+          generateError(error.response.data.errors[0].message);
+          return;
+        }
+        generateError('An error occurred. Please try again later.');
+      });
     }
   }
   return (
