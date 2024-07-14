@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { ReminderModel } from '@/app/shared/models/ReminderModel';
+import { postReminder } from '@/app/shared/services/ReminderServices';
 interface FieldValues {
   title: string
   note?: string
@@ -12,15 +13,25 @@ interface FieldValues {
 
 const ReminderForm = () => {
   const { register, handleSubmit } = useForm<FieldValues>();
+  const [loading, setLoading] = React.useState(false);
 
-  const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data: any) => {
     const reminder: ReminderModel = {
       title: data.title,
       note: data.note,
       date_time: data.dateTime,
       reminder_sent: false
     }
-    console.log(reminder);
+    setLoading(true);
+    const response = await postReminder(reminder).then(()=>{
+      console.log('Reminder added successfully');
+    })
+    .catch((error) => {
+      console.log(error)
+    }).finally(()=>{
+      console.log('Reminder added successfully');
+      setLoading(false);
+    });
   };
   return (
     <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
