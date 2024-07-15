@@ -11,8 +11,13 @@ interface FieldValues {
   note?: string
   dateTime: string
 }
+type ReminderFormProps = {
+  refetch: () => void
+}
 
-const ReminderForm = () => {
+const ReminderForm: React.FC<ReminderFormProps> = ({
+  refetch
+}) => {
   const { register, handleSubmit } = useForm<FieldValues>();
   const [loading, setLoading] = React.useState(false);
 
@@ -31,7 +36,7 @@ const ReminderForm = () => {
     .catch((error) => {
       generateMessage(error, 'error');
     }).finally(()=>{
-      console.log('Reminder added successfully');
+      refetch();
       setLoading(false);
     });
   };
