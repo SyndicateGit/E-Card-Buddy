@@ -25,6 +25,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [subpage, setSubpage] = useState<string>('Home');
   const sideBarWidth = uiSettings.isSideBarCollapsed ? 0.5 : 1;
+
   if (!user || !user._id) {
     getCurrentUser()
       .then((res) => {

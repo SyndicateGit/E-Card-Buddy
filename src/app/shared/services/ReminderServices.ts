@@ -12,3 +12,15 @@ export async function postReminder(reminder: ReminderModel): Promise<any> {
     throw error;
   });
 }
+
+export async function getReminders(): Promise<any> {
+  return await axiosInstance()
+  .get('/reminder/getReminders')
+  .then((response) => {
+    return response.data.data.reminders;
+  })
+  .catch((error: any) => {
+    console.log(error);
+    throw error;
+  });
+}
