@@ -42,7 +42,7 @@ const Dashboard = () => {
     <>
       <div className='flex flex-col h-full'>
         <div className='flex'>
-          <div className={`flex justify-center items-center ${uiSettings.isSideBarCollapsed? 'w-[80px]' : 'w-[140px]'}`}>
+          <div className={`flex justify-center items-center ${uiSettings.isSideBarCollapsed? 'w-[81px]' : 'w-[140px]'} border-b border-r`}>
             <SideBarToggle isCollapsed={uiSettings.isSideBarCollapsed}/>
           </div>
           <Navbar/>
@@ -51,28 +51,30 @@ const Dashboard = () => {
           <div className={`flex flex-col ${uiSettings.isSideBarCollapsed? 'w-[80px]' : 'w-[140px]'}`}>
             <SideBar subpage={subpage} setSubpage={setSubpage} isSideBarCollapsed={uiSettings.isSideBarCollapsed}/>
           </div>
-          <main className="flex flex-1 flex-col items-center justify-between">
+          <main className="flex flex-1 flex-col border-l">
             <div className='border-b w-full mb-4'>
               <h1 className='text-xl mx-5'>{subpage}</h1>
             </div>
-            {subpage === 'Home' && (
-              <Home/>
-            )}
-            {subpage === 'Card Builder' && (
-              <CardBuilder/>
-            )}
-            {subpage === 'Card Library' && (
-              <CardLibrary/>
-            )}
-            {subpage === 'Card Scheduler' && (
-              <CardScheduler/>
-            )}
-            {subpage === 'Reminders' && (
-              <Reminders/>
-            )}
-            {subpage === 'Contacts' && (
-              <Contacts/>
-            )}
+            <div className='pl-4'>
+              {subpage === 'Home' && (
+                <Home/>
+              )}
+              {subpage === 'Card Builder' && (
+                <CardBuilder/>
+              )}
+              {subpage === 'Card Library' && (
+                <CardLibrary/>
+              )}
+              {subpage === 'Card Scheduler' && (
+                <CardScheduler/>
+              )}
+              {subpage === 'Reminders' && (
+                <Reminders/>
+              )}
+              {subpage === 'Contacts' && (
+                <Contacts/>
+              )}
+            </div>
           </main>
         </div>
       </div>

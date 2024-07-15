@@ -9,7 +9,7 @@ const Navbar = () => {
     router.push('/');
   };
   return (
-    <nav className="navbar w-full bg-base-100">
+    <nav className="navbar flex-1 bg-base-100 border-b">
       <div className="flex-1">
         <Link href={'/dashboard'} className="text-xl mx-4 cursor-pointer">
           E-Card Buddy
