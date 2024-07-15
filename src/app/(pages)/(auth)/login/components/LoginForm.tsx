@@ -4,18 +4,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { login } from '@/app/shared/services/AuthServices';
+import { generateMessage } from '@/app/shared/utils/Notifications';
 
 const LoginForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
-  const generateError = (error: string) => {
-    toast.error(error, {
-      position: 'top-center',
-      autoClose: 3000,
-    });
-  };
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -32,7 +26,7 @@ const LoginForm = () => {
 
     setIsLoading(true);
     if (!data.email || !data.password) {
-      generateError('Please fill in all fields.');
+      generateMessage('Please fill in all fields.', 'error');
       setIsLoading(false);
       return;
     } else { 
@@ -42,10 +36,10 @@ const LoginForm = () => {
       }).catch((error: any)=>{
         setIsLoading(false);
         if (error.response && error.response.data && error.response.data.errors) {
-          generateError(error.response.data.errors[0].message);
+          generateMessage(error.response.data.errors[0].message, 'error');
           return;
         }
-        generateError('An error occurred. Please try again later.');
+        generateMessage('An error occurred. Please try again later.', 'error');
       });
     }
   }

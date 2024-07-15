@@ -3,19 +3,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import React, { useState, FormEvent, useRef } from 'react';
-
 import { register } from '@/app/shared/services/AuthServices';
+import { generateMessage } from '@/app/shared/utils/Notifications';
+
 const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
-
-  const generateError = (error: string) => {
-    toast.error(error, {
-      position: 'top-center',
-      autoClose: 3000,
-    });
-  };
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -34,7 +28,7 @@ const SignUpForm = () => {
       setIsLoading(true);
 
       if (!data.email || !data.password || !data.name) {
-        generateError('Please fill in all fields.');
+        generateMessage('Please fill in all fields.', 'error');
         setIsLoading(false);
         return;
       } 
@@ -47,10 +41,10 @@ const SignUpForm = () => {
       .catch((error: any)=>{
         setIsLoading(false);
         if (error.response && error.response.data.error.includes('E11000')) {
-          generateError('Email already exists');
+          generateMessage('Email already exists', 'error');
           return;
         }
-        generateError('An error occurred. Please try again later.');
+        generateMessage('An error occurred. Please try again later.', 'error');
     });
   }
   return (

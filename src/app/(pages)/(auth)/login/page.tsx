@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import { setUser } from '@/lib/features/auth/userSlice';
 import { getCurrentUser } from '@/app/shared/services/UserServices';
-import { getToken, removeToken } from '@/app/shared/utils/TokenUtils';
+import { getToken, removeToken } from '@/app/shared/utils/Token';
 import { verifyToken } from '@/app/shared/services/AuthServices';
 
 const SignIn = () => {

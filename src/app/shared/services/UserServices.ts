@@ -1,13 +1,14 @@
-import { getToken } from '../utils/TokenUtils';
+import { getToken } from '../utils/Token';
 import axiosInstance from './AxiosInstance';
 
 export async function getCurrentUser(): Promise<any> {
-  try {
-    const response = await axiosInstance().get('/user/getCurrentUser');
-    const user = response.data.data.user;
-    return user;
-  } catch (error: any) {
+  return await axiosInstance()
+  .get('/user/getCurrentUser')
+  .then((response) => {
+    return response.data.data.user;
+  })
+  .catch ((error: any)=>{
     console.log(error);
     throw error;
-  }
+  });
 }

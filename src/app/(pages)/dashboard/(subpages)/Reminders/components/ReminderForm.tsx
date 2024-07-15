@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { ReminderModel } from '@/app/shared/models/ReminderModel';
 import { postReminder } from '@/app/shared/services/ReminderServices';
+import { generateMessage } from '@/app/shared/utils/Notifications';
 interface FieldValues {
   title: string
   note?: string
@@ -23,11 +24,12 @@ const ReminderForm = () => {
       reminder_sent: false
     }
     setLoading(true);
-    const response = await postReminder(reminder).then(()=>{
-      console.log('Reminder added successfully');
+    await postReminder(reminder).then((response)=>{
+      console.log(response);
+      generateMessage('Reminder added successfully', 'success');
     })
     .catch((error) => {
-      console.log(error)
+      generateMessage(error, 'error');
     }).finally(()=>{
       console.log('Reminder added successfully');
       setLoading(false);
