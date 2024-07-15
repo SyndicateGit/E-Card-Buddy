@@ -10,7 +10,7 @@ const Reminders = () => {
   const { isPending, error, data, refetch } = useQuery({
     queryKey: ['reminders'],
     queryFn: getReminders,
-    enabled: false,
+    enabled: true,
   })
   if(isPending) return <div>Loading...</div>
   if(error) return <div>Error: {error.message}</div>
@@ -21,9 +21,9 @@ const Reminders = () => {
 
   return (
     <>
-      <div className='display flex w-full h-full'>
+      <div className='display flex lg:flex-row lg:gap-20 flex-col self-start h-full'>
         <ReminderForm refetch={refetch}/>
-        <div className='ml-20 flex-1 h-full'>
+        <div className='lg:ml-2 flex-1 h-full lg:w-[400px] w-full self-start'>
           {remindersSorted.map((reminder: ReminderModel) => (
             <ReminderCard reminder={reminder} key={reminder.id}/>
           ))}
