@@ -1,5 +1,5 @@
 export type ReminderModel = {
-  id?: string;
+  _id?: string;
   title: string;
   note?: string;
   date_time: string;

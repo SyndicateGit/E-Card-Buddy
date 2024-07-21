@@ -40,19 +40,19 @@ const Dashboard = () => {
   //TODO: Add transitions to the sidebar collapse
   return (
     <>
-      <div className='flex flex-col h-full'>
+      <div className='flex flex-col h-full overflow-hidden'>
         <div className='flex'>
           <div className={`flex justify-center items-center ${uiSettings.isSideBarCollapsed? 'w-[81px]' : 'w-[140px]'} border-b border-r`}>
             <SideBarToggle isCollapsed={uiSettings.isSideBarCollapsed}/>
           </div>
           <Navbar/>
         </div>
-        <div className='flex flex-1'>
+        <div className='flex h-full'>
           <div className={`flex flex-col ${uiSettings.isSideBarCollapsed? 'w-[80px]' : 'w-[140px]'}`}>
             <SideBar subpage={subpage} setSubpage={setSubpage} isSideBarCollapsed={uiSettings.isSideBarCollapsed}/>
           </div>
           <main className="flex flex-1 flex-col border-l">
-            <div className='border-b w-full mb-4'>
+            <div className='border-b w-full'>
               <h1 className='text-xl mx-5'>{subpage}</h1>
             </div>
             <div className='pl-4'>

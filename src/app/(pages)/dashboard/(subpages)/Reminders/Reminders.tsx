@@ -21,11 +21,11 @@ const Reminders = () => {
 
   return (
     <>
-      <div className='display flex lg:flex-row lg:gap-20 flex-col self-start h-full'>
+      <div className='display flex lg:flex-row lg:gap-20 flex-col self-start overflow-hidden h-full'>
         <ReminderForm refetch={refetch}/>
-        <div className='lg:ml-2 flex-1 h-full lg:w-[400px] w-full self-start'>
+        <div className='lg:ml-2 h-[50%] self-start overflow-y-scroll border mt-2 w-[300px]'>
           {remindersSorted.map((reminder: ReminderModel) => (
-            <ReminderCard reminder={reminder} key={reminder.id}/>
+            <ReminderCard reminder={reminder} key={reminder._id} refetch={refetch}/>
           ))}
         </div>
       </div>
